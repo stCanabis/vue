@@ -1,3 +1,56 @@
+<template>
+<div class="wrapper">
+    <h1>
+        {{test}}
+    </h1>
+    <button @click="btnClick">{{count}}</button>
+
+
+
+
+</div>
+
+
+
+</template>
+
+<script>
+    export default {
+        name: 'testComponent',
+        data(){
+            return{
+                test:'Тест',
+                toApp: 'от потомка',
+                count: 0
+            }
+        },
+        methods:{
+            btnClick(){
+                 this.count= this.count + 1;
+            }
+
+        }
+
+    }
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--<template>-->
 <!--  <div class="hello">-->
 <!--    <h1>{{ msg }}</h1>-->

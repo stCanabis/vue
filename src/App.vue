@@ -1,3 +1,65 @@
+<template>
+  <div class="wrapper">
+    <h1>{{hello}}</h1>
+    <hr>
+
+    <testComponent ></testComponent>
+
+
+
+
+  </div>
+</template>
+<script>
+  import testComponent from "./components/testComponent"
+
+  export default {
+    name:'app',
+    components: {
+      testComponent,
+    },
+    data(){
+      return{
+        hello:'Hello,World',
+      }
+    }
+  }
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--<template>-->
 <!--  <div id="app">-->
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
