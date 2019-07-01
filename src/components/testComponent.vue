@@ -1,9 +1,9 @@
 <template>
 <div class="wrapper">
-    <h1>
-        {{test}}
+    <h1 :class="{active: isActive}">
+        {{test}}- {{h1Counter}}
     </h1>
-    <button @click="btnClick">{{count}}</button>
+    <button  @click="btnClick">{{count}}</button>
 
 
 
@@ -21,14 +21,26 @@
             return{
                 test:'Тест',
                 toApp: 'от потомка',
-                count: 0
+                count: 0,
+                isActive: false
             }
         },
         methods:{
             btnClick(){
-                 this.count= this.count + 1;
-            }
+                this.count= this.count + 1;
+            },
 
+
+        },
+        computed:{
+            h1Counter(){
+                return this.count;
+            },
+        },
+        updated() {
+            this.$nextTick(function () {
+                    this.isActive = this.count > 10 ? true : false;
+            })
         }
 
     }
@@ -37,6 +49,12 @@
 
 
 </script>
+<style scoped>
+    h1.active{
+        color: red;
+    }
+
+</style>
 
 
 
