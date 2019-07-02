@@ -1,22 +1,34 @@
 <template>
-<div class="wrapper">
-    <h1 :class="{active: isActive}">
+<WorkSpace>
+    <VHead level="h0" :class="{active: isActive}">
+        {{title}}
+    </VHead>
+
+
+
+    <VHead :class="{active: isActive}">
         {{test}}- {{h1Counter}}
-    </h1>
-    <button  @click="btnClick">{{count}}</button>
+    </VHead>
+
+    <VButton @click="btnClick" text="Тест кнопка"></VButton>
 
 
-
-
-</div>
-
-
-
+</WorkSpace>
 </template>
 
 <script>
+    import WorkSpace from "swui/src/components/WorkSpace"
+    import VHead from "swui/src/components/VHead"
+    import VButton from "swui/src/components/VButton"
+
     export default {
-        name: 'testComponent',
+        props:['title'],
+        components:{
+            WorkSpace,
+            VHead,
+            VButton
+        },
+        name: 'myComponent',
         data(){
             return{
                 test:'Тест',

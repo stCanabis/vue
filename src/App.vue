@@ -1,26 +1,72 @@
 <template>
-  <div class="wrapper">
-    <h1>{{hello}}</h1>
-    <hr>
-
-    <testComponent ></testComponent>
+    <TheLayout>
 
 
+        <template #branding>
+<!--            <TestComponent>-->
+                <VSet>
+                    <VIcon name="star" />
+                </VSet>
+<!--            </TestComponent>-->
+        </template>
+
+        <template #menu>
+            <myMeny></myMeny>
+        </template>
+
+        <template #navigation>
+            <TestComponent>
+                N
+            </TestComponent>
+        </template>
+
+        <template #content>
+            <WorkSpace>
+                <VSet>
+                    <myComponent :title="title"></myComponent>
+                    <myForm></myForm>
+                </VSet>
+                <template #footer>
+                    <VSet>
+                        <VButton text="Списать" accent />
+                        <VButton text="Отменить" />
+                    </VSet>
+                </template>
+            </WorkSpace>
+        </template>
 
 
-  </div>
+    </TheLayout>
 </template>
 <script>
-  import testComponent from "./components/testComponent"
+
+  import myComponent from "./components/myComponent"
+  import myForm from "./components/myForm"
+  import myMeny from "./components/myMenu"
+  import TheLayout from "swui/src/components/TheLayout"
+  import TestComponent from "swui/src/components/TestComponent"
+  import VSet from "swui/src/components/VSet"
+  import VIcon from "swui/src/components/VIcon"
+  import VButton from "swui/src/components/VButton"
+  import WorkSpace from "swui/src/components/WorkSpace";
 
   export default {
     name:'app',
     components: {
-      testComponent,
+        WorkSpace,
+        myComponent,
+        myMeny,
+        myForm,
+        TestComponent,
+        TheLayout,
+        VSet,
+        VIcon,
+        VButton,
     },
     data(){
       return{
-        hello:'Hello,World',
+          hello:'Hello,World',
+          title:'Передал от родителя'
       }
     }
   }
