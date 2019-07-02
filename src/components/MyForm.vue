@@ -20,28 +20,18 @@
 </template>
 <script>
 
-    import WorkSpace from "swui/src/components/WorkSpace"
-    import VHead from "swui/src/components/VHead"
-    import VPanel from "swui/src/components/VPanel"
     import VSet from "swui/src/components/VSet"
-    import VButton from "swui/src/components/VButton"
     import VInput from "swui/src/components/VInput"
     import VLabel from "swui/src/components/VLabel"
-    import VIcon from "swui/src/components/VIcon"
     import VSign from "swui/src/components/VSign"
 
     export default {
         name: 'MyForm',
         components: {
             VSet,
-            WorkSpace,
-            VHead,
-            VPanel,
             VSign,
-            VButton,
             VInput,
             VLabel,
-            VIcon,
         },
     }
 </script>

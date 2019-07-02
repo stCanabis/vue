@@ -47,9 +47,6 @@
     import VPanel from "swui/src/components/VPanel"
     import VSet from "swui/src/components/VSet"
     import VButton from "swui/src/components/VButton"
-    import VInput from "swui/src/components/VInput"
-    import VLabel from "swui/src/components/VLabel"
-    import VIcon from "swui/src/components/VIcon"
     import MyForm from "../components/MyForm"
 
 
@@ -62,9 +59,7 @@
             VHead,
             VPanel,
             VButton,
-            VInput,
-            VLabel,
-            VIcon,
+
         },
         data(){
             return{
