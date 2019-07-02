@@ -1,52 +1,39 @@
 <template>
     <TheLayout>
 
-
         <template #branding>
-<!--            <TestComponent>-->
-                <VSet>
-                    <VIcon name="star" />
-                </VSet>
-<!--            </TestComponent>-->
+            <img src="https://siberianhealth.com/favicon.ico" width="16px" height="16px"/>
         </template>
 
         <template #menu>
-            <myMeny></myMeny>
+            <myMenu></myMenu>
         </template>
 
         <template #navigation>
-            <TestComponent>
-                N
-            </TestComponent>
+            <VSet horizontalAlign="right" vertical-align="center">
+                <VHead width="fit">{{name}}</VHead>
+                <VButton text="Выйти"></VButton>
+            </VSet>
         </template>
 
         <template #content>
-            <WorkSpace>
-                <VSet>
-                    <myComponent :title="title"></myComponent>
-                    <myForm></myForm>
-                </VSet>
-                <template #footer>
-                    <VSet>
-                        <VButton text="Списать" accent />
-                        <VButton text="Отменить" />
-                    </VSet>
-                </template>
-            </WorkSpace>
+                <servers></servers>
         </template>
-
 
     </TheLayout>
 </template>
 <script>
 
-  import myComponent from "./components/myComponent"
-  import myForm from "./components/myForm"
-  import myMeny from "./components/myMenu"
+  import Servers from "./components/Servers"
+  // import MyForm from "./components/MyForm"
+  import MyMenu from "./components/MyMenu"
   import TheLayout from "swui/src/components/TheLayout"
   import TestComponent from "swui/src/components/TestComponent"
   import VSet from "swui/src/components/VSet"
+  import VImage from "swui/src/components/VImage"
   import VIcon from "swui/src/components/VIcon"
+  import VText from "swui/src/components/VText"
+  import VHead from "swui/src/components/VHead"
   import VButton from "swui/src/components/VButton"
   import WorkSpace from "swui/src/components/WorkSpace";
 
@@ -54,18 +41,21 @@
     name:'app',
     components: {
         WorkSpace,
-        myComponent,
-        myMeny,
-        myForm,
+        Servers,
+        MyMenu,
+        // MyForm,
         TestComponent,
         TheLayout,
         VSet,
+        VText,
+        VHead,
+        VImage,
         VIcon,
         VButton,
     },
     data(){
       return{
-          hello:'Hello,World',
+          name:'Laptev A.A.',
           title:'Передал от родителя'
       }
     }

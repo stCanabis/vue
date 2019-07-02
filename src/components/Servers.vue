@@ -1,0 +1,94 @@
+<template>
+    <WorkSpace>
+<!--        <VSet divider direction="vertical">-->
+
+            <template #header>
+                <VHead level="h1">Настройки серверов</VHead>
+            </template>
+
+            <template #content>
+                <VPanel width="col3" v-if="showPanelDefault" @close="showPanelDefault = false">
+                    <template #header>
+                        Создать настройку
+                    </template>
+                    <template #content>
+                       <MyForm></MyForm>
+                    </template>
+                    <template #footer>
+                        <VSet>
+                            <VButton text="Сохранить" accent />
+                            <VButton text="Отменить" />
+                        </VSet>
+                    </template>
+                </VPanel>
+
+            </template>
+
+            <template #footer>
+
+                <VSet>
+                    <VButton text="Добавить" @click="showPanelDefault = true" accent />
+                    <VButton text="Удалить" disabled />
+                </VSet>
+            </template>
+<!--        </VSet>-->
+
+
+
+    </WorkSpace>
+
+
+</template>
+
+<script>
+
+    import WorkSpace from "swui/src/components/WorkSpace"
+    import VHead from "swui/src/components/VHead"
+    import VPanel from "swui/src/components/VPanel"
+    import VSet from "swui/src/components/VSet"
+    import VButton from "swui/src/components/VButton"
+    import VInput from "swui/src/components/VInput"
+    import VLabel from "swui/src/components/VLabel"
+    import VIcon from "swui/src/components/VIcon"
+    import MyForm from "../components/MyForm"
+
+
+    export default {
+        name:'Servers',
+        components:{
+            MyForm,
+            WorkSpace,
+            VSet,
+            VHead,
+            VPanel,
+            VButton,
+            VInput,
+            VLabel,
+            VIcon,
+        },
+        data(){
+            return{
+                showPanelDefault:false
+            }
+        }
+
+    }
+
+
+
+
+</script>
+<style scoped>
+    h1.active{
+        color: red;
+    }
+
+</style>
+
+
+
+
+
+
+
+
