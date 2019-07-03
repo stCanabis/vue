@@ -7,13 +7,7 @@
         </VSet>
         <VSet direction="vertical" indentSize="S">
             <VSign>Отдел событий (ОС)</VSign>
-            <VLink @click.prevent="clickHandler">Импорт участников событий ЭО</VLink>
-            <VLink @click.prevent="clickHandler">Импорт участников событий 20</VLink>
-            <VLink @click.prevent="clickHandler">Импорт участников событий Э23</VLink>
-            <VLink @click.prevent="clickHandler">Импорт участников ЭО</VLink>
-            <VLink @click.prevent="clickHandler">Импорт  событий ЭО</VLink>
-            <VLink @click.prevent="clickHandler">Импорт участников событий ЭО</VLink>
-            <VLink @click.prevent="clickHandler">участников событий ЭО</VLink>
+            <VLink :url="val" routerLink  v-for="(val, name) in menuLink" >{{name}}</VLink>
         </VSet>
     </VSet>
 
@@ -34,6 +28,20 @@
             VLink,
             VSign,
         },
+        data(){
+            return {
+                menuLink: {
+                    'Импорт участников событий ЭО': 'link',
+                    'Импорт участников  ЭО': 'link',
+                    'Импорт участников событий 1О': 'link',
+                    'Импорт участников  Э2О': 'link',
+                    'Импорт участников событий 12': 'link',
+                    'Импорт  событий ЭО': 'link',
+                    'Импорт участников событий 2О': 'link',
+                    'Импорт участников событий 5О': 'link',
+                }
+            }
+        }
 
     }
 </script>
