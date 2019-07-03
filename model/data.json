@@ -1,0 +1,49 @@
+{
+  "List": [
+    {
+      "Id": 1,
+      "Name": "HomeServer",
+      "Value": "https://home.siberianhealth.com",
+      "Description": "",
+      "GroupId": 0,
+      "SettingsGroup": {
+        "Id": 0,
+        "Name": ""
+      }
+    },
+    {
+      "Id": 2,
+      "Name": "RabbitServer",
+      "Value": "shopmq.siberianhealth.com",
+      "Description": "",
+      "GroupId": 0,
+      "SettingsGroup": {
+        "Id": 0,
+        "Name": ""
+      }
+    },
+    {
+      "Id": 3,
+      "Name": "RabbitQueueName",
+      "Value": "home",
+      "Description": "",
+      "GroupId": 0,
+      "SettingsGroup": {
+        "Id": 0,
+        "Name": ""
+      }
+    },
+    {
+      "Id": 4,
+      "Name": "DomainName",
+      "Value": "",
+      "Description": "",
+      "GroupId": 0,
+      "SettingsGroup": {
+        "Id": 0,
+        "Name": ""
+      }
+    }
+  ],
+  "Total": 4
+}

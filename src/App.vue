@@ -1,30 +1,24 @@
 <template>
     <TheLayout>
-
         <template #branding>
             <img src="https://siberianhealth.com/favicon.ico" width="16px" height="16px"/>
         </template>
-
         <template #menu>
-            <myMenu></myMenu>
+            <MyMenu></MyMenu>
         </template>
-
         <template #navigation>
             <VSet horizontalAlign="right" vertical-align="center">
                 <VHead width="fit">{{name}}</VHead>
                 <VButton text="Выйти"></VButton>
             </VSet>
         </template>
-
         <template #content>
-                <servers></servers>
+            <router-view></router-view>
         </template>
-
     </TheLayout>
 </template>
 <script>
 
-  import Servers from "./components/Servers"
   import MyMenu from "./components/MyMenu"
   import TheLayout from "swui/src/components/TheLayout"
   import VSet from "swui/src/components/VSet"
@@ -34,7 +28,6 @@
   export default {
     name:'app',
     components: {
-        Servers,
         MyMenu,
         TheLayout,
         VSet,
