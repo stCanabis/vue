@@ -19,62 +19,31 @@
 </template>
 <script>
 
-  import MyMenu from "./components/MyMenu"
-  import TheLayout from "swui/src/components/TheLayout"
-  import VSet from "swui/src/components/VSet"
-  import VHead from "swui/src/components/VHead"
-  import VButton from "swui/src/components/VButton"
+    import MyMenu from "./components/MyMenu"
+    import TheLayout from "swui/src/components/TheLayout"
+    import VSet from "swui/src/components/VSet"
+    import VHead from "swui/src/components/VHead"
+    import VButton from "swui/src/components/VButton"
 
-  export default {
-    name:'app',
-    components: {
-        MyMenu,
-        TheLayout,
-        VSet,
-        VHead,
-        VButton,
-    },
-    data(){
-      return{
-          name:'Laptev A.A.',
-          title:'Передал от родителя'
-      }
+    export default {
+        name: 'app',
+        components: {
+            MyMenu,
+            TheLayout,
+            VSet,
+            VHead,
+            VButton,
+        },
+        data() {
+            return {
+                name: 'Laptev A.A.',
+                title: 'Передал от родителя'
+            }
+        }
     }
-  }
-
-
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--<template>-->
