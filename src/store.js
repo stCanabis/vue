@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        data: {}
+        data: []
     },
     getters: {
         getAllServers: state => state.data,
@@ -18,7 +18,7 @@ export default new Vuex.Store({
         addAllServers(state, serversData) {
             state.data = serversData;
         },
-        changeServerData(state, serverData) {
+        changeServerDataAction(state, serverData) {
             state.data.splice(state.data.findIndex(data => data.Id === serverData.Id), 1, serverData);
         },
         removeServerData(state, serverData) {
@@ -27,12 +27,12 @@ export default new Vuex.Store({
 
     },
     actions: {
-        addNewServer(state, data) {
+        addNewServerAction(state, data) {
             setTimeout(() => {
                 state.commit('addNewServer', data);
             }, 1000);
         },
-        removeServerData(state, data) {
+        removeServerDataAction(state, data) {
             setTimeout(() => {
                 state.commit('removeServerData', data);
             }, 1000);

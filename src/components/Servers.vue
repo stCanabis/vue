@@ -12,7 +12,7 @@
                     <th>Description</th>
                     <th>GroupId</th>
                 </tr>
-                <tr v-for="item in serversData" :key="item.Id" @click="fetchServerData(item.Id)">
+                <tr v-for="item in getAllServers" :key="item.Id" @click="fetchServerData(item.Id)">
                     <td>{{item.Id}}</td>
                     <td>{{item.Name}}</td>
                     <td>{{item.Value}}</td>
@@ -84,6 +84,7 @@
     import VInput from "swui/src/components/VInput"
     import VSign from "swui/src/components/VSign"
     import serversList from '../../model/data'
+    import {mapActions,mapGetters,mapMutations} from 'vuex'
 
     export default {
         name: 'Servers',
@@ -113,25 +114,31 @@
         },
 
         computed: {
-            serversData() {
-                return this.$store.getters.getAllServers;
-            },
+            ...mapGetters([
+                'getAllServers',
+            ]),
         },
 
         mounted() {
-            this.fetchData();
+            this.addAllServers(serversList.List);
         },
 
         methods: {
+            ...mapActions([
+                'addNewServerAction',
+                'removeServerDataAction',
+            ]),
+
+            ...mapMutations([
+                'addAllServers',
+                'changeServerDataAction',
+            ]),
             nextPage() {
                 this.$router.push({path: '/page2'});
             },
             addNewServer() {
-                this.$store.dispatch('addNewServer', this.newServerData);
+                this.addNewServerAction(this.newServerData);
                 this.clearData();
-            },
-            fetchData() {
-                this.$store.commit('addAllServers', serversList.List);
             },
             fetchServerData(id) {
                 this.action = 'Изменить настройки сервера';
@@ -140,10 +147,10 @@
                 Object.assign(this.newServerData, this.$store.getters.getServerData(id));
             },
             changeServerData() {
-                this.$store.commit('changeServerData', this.newServerData);
+                this.changeServerDataAction(this.newServerData);
             },
             removeServerData() {
-                this.$store.dispatch('removeServerData', this.newServerData);
+                this.removeServerDataAction(this.newServerData);
                 this.clearData();
             },
             showPanel() {
