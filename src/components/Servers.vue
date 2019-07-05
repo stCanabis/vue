@@ -12,7 +12,7 @@
                     <th>Description</th>
                     <th>GroupId</th>
                 </tr>
-                <tr v-for="item in serversData" :key="item.Id">
+                <tr v-for="item in serversData" :key="item.Id" @click="fetchServerData(item.Id)">
                     <td>{{item.Id}}</td>
                     <td>{{item.Name}}</td>
                     <td>{{item.Value}}</td>
@@ -23,7 +23,7 @@
             </table>
             <VPanel width="col3" v-if="showPanelDefault" @close="showPanelDefault = false">
                 <template #header>
-                    Создать настройку
+                    {{action}}
                 </template>
                 <template #content>
                     <form action="">
@@ -31,21 +31,24 @@
                             <VSet vertical-align="center" indentSize="L">
                                 <VLabel for="input1" width="col4">Name</VLabel>
                                 <VSet direction="vertical" indentSize="S">
-                                    <VInput width="dyn" id="input1" placeholder="Товар" v-model="newServerData.Name"></VInput>
+                                    <VInput width="dyn" id="input1" placeholder="Товар"
+                                            v-model="newServerData.Name"></VInput>
                                     <VSign>только латинские буквы</VSign>
                                 </VSet>
                             </VSet>
                             <VSet vertical-align="center" indentSize="L">
                                 <VLabel for="input1" width="col4">Value</VLabel>
                                 <VSet direction="vertical" indentSize="S">
-                                    <VInput width="dyn" id="input2" placeholder="Товар" v-model="newServerData.Value"></VInput>
+                                    <VInput width="dyn" id="input2" placeholder="Товар"
+                                            v-model="newServerData.Value"></VInput>
                                     <VSign>только латинские буквы</VSign>
                                 </VSet>
                             </VSet>
                             <VSet vertical-align="center" indentSize="L">
                                 <VLabel for="input1" width="col4">Description</VLabel>
                                 <VSet direction="vertical" indentSize="S">
-                                    <VInput width="dyn" id="input3" placeholder="Товар" v-model="newServerData.Description"></VInput>
+                                    <VInput width="dyn" id="input3" placeholder="Товар"
+                                            v-model="newServerData.Description"></VInput>
                                     <VSign>только латинские буквы</VSign>
                                 </VSet>
                             </VSet>
@@ -54,7 +57,9 @@
                 </template>
                 <template #footer>
                     <VSet>
-                        <VButton text="Сохранить" @click="addNewServer" accent/>
+                        <VButton text="Сохранить" v-if="operationType === 'save'" @click="addNewServer" accent/>
+                        <VButton text="Изменить" v-if="operationType === 'change'" @click="changeServerData" accent/>
+                        <VButton text="Удалить" v-if="operationType === 'change'" @click="removeServerData" accent/>
                         <VButton text="Отменить"/>
                     </VSet>
                 </template>
@@ -62,7 +67,7 @@
         </template>
         <template #footer>
             <VSet>
-                <VButton text="Добавить" @click="showPanelDefault = true" accent/>
+                <VButton text="Добавить" @click="showPanel" accent/>
                 <VButton text="новая страница" @click="nextPage"/>
             </VSet>
         </template>
@@ -96,46 +101,64 @@
 
         data() {
             return {
+                action: 'Создать настройку',
                 showPanelDefault: false,
-                newServerData:{
-                    Name:'',
-                    Value:'',
-                    Description:''
+                operationType: '',
+                newServerData: {
+                    Name: '',
+                    Value: '',
+                    Description: ''
                 }
             }
         },
-
-
 
         computed: {
             serversData() {
                 return this.$store.getters.getAllServers;
-            }
+            },
         },
 
         mounted() {
-            this.showData();
-
-            // this.$nextTick(function () {
-            // })
+            this.fetchData();
         },
 
         methods: {
             nextPage() {
-                this.$router.push({path: '/page2'})
+                this.$router.push({path: '/page2'});
             },
             addNewServer() {
-                this.$store.commit('addNewServer',this.newServerData);
+                this.$store.dispatch('addNewServer', this.newServerData);
+                this.clearData();
+            },
+            fetchData() {
+                this.$store.commit('addAllServers', serversList.List);
+            },
+            fetchServerData(id) {
+                this.action = 'Изменить настройки сервера';
+                this.showPanelDefault = true;
+                this.operationType = 'change';
+                Object.assign(this.newServerData, this.$store.getters.getServerData(id));
+            },
+            changeServerData() {
+                this.$store.commit('changeServerData', this.newServerData);
+            },
+            removeServerData() {
+                this.$store.dispatch('removeServerData', this.newServerData);
+                this.clearData();
+            },
+            showPanel() {
+                this.showPanelDefault = true;
+                this.action = 'Добавить сервер';
+                this.operationType = 'save';
+                this.clearData();
+            },
+            clearData() {
                 this.newServerData = {
-                    Name:'',
-                    Value:'',
-                    Description:''
+                    Name: '',
+                    Value: '',
+                    Description: ''
                 }
-            },
-            showData() {
-                this.$store.commit('addAllServer', serversList.List);
-                //this.serversData = serversList.List
-            },
+            }
         },
     }
 
@@ -143,6 +166,10 @@
 <style scoped>
     form {
         width: 100%;
+    }
+
+    tr:hover {
+        cursor: pointer;
     }
 
 </style>

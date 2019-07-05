@@ -1,26 +1,43 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import data from '../model/data'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        data:{}
+        data: {}
     },
     getters: {
-        getAllServers: state => {
-            return state.data;
-        },
+        getAllServers: state => state.data,
+        getServerData: state => id => state.data.find(data => data.Id === id)
     },
     mutations: {
-        addNewServer(state,data) {
+        addNewServer(state, data) {
             state.data.push(data);
-
         },
-        addAllServer(state, serversData) {
+        addAllServers(state, serversData) {
             state.data = serversData;
-        }
+        },
+        changeServerData(state, serverData) {
+            state.data.splice(state.data.findIndex(data => data.Id === serverData.Id), 1, serverData);
+        },
+        removeServerData(state, serverData) {
+            state.data.splice(state.data.findIndex(data => data.Id === serverData.Id), 1);
+        },
+
+    },
+    actions: {
+        addNewServer(state, data) {
+            setTimeout(() => {
+                state.commit('addNewServer', data);
+            }, 1000);
+        },
+        removeServerData(state, data) {
+            setTimeout(() => {
+                state.commit('removeServerData', data);
+            }, 1000);
+        },
+
     }
 
 })
