@@ -84,21 +84,12 @@
     import VInput from "swui/src/components/VInput"
     import VSign from "swui/src/components/VSign"
     import serversList from '../../model/data'
-    import {mapActions,mapGetters,mapMutations} from 'vuex'
+    import {mapActions, mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: 'Servers',
 
-        components: {
-            WorkSpace,
-            VSet,
-            VHead,
-            VPanel,
-            VLabel,
-            VButton,
-            VInput,
-            VSign,
-        },
+        components: {WorkSpace, VSet, VHead, VPanel, VLabel, VButton, VInput, VSign},
 
         data() {
             return {
